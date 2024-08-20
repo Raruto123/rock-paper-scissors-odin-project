@@ -1,10 +1,3 @@
-/*
-1) creer une fonction getComputerChoice
-2)getComputerChoice doit retourner 3 valeurs
-3) il doit retourner cela aléatoirement
-4) se servir de Math.random pour mettre en place la condition de retour
-*/
-
 let humanScore = 0;
 let computerScore = 0;
 
@@ -22,53 +15,37 @@ function getComputerChoice() {
     } else {
         choice  = null;
     }
+    console.log(`COMPUTER CHOICE THIS ROUND : ${choice}`);
 
     return choice;
 }
 
 
-
-/*
-1) creer une fonction getHumanChoice
-2)getHumanChoice doit retourner 3 valeurs
-3) il doit retourner cela selon ce que le joueur humain a tapé comme valeur de 0 à 99
-4) se servir de Prompt pour obtenir l'entrée de l'humain
-*/
-
 function getHumanChoice() {
     let options = prompt("Type your choice : Rock - Paper - Scissors ?");
     let inventory = ["Rock", "Paper", "Scissors"];
 
-    if (options.toLocaleLowerCase().includes(inventory[0].toLocaleLowerCase())) {
+    if (options !== null && options.toLocaleLowerCase().includes(inventory[0].toLocaleLowerCase())) {
         options = inventory[0];
-    } else if (options.toLocaleLowerCase().includes(inventory[1].toLocaleLowerCase())) {
+    } else if (options !== null && options.toLocaleLowerCase().includes(inventory[1].toLocaleLowerCase())) {
         options = inventory[1];
-    } else if (options.toLocaleLowerCase().includes(inventory[2].toLocaleLowerCase())) {
+    } else if (options !== null && options.toLocaleLowerCase().includes(inventory[2].toLocaleLowerCase())) {
         options = inventory[2];
+    } else if (options === null){
+        options = "no value chosen";
     } else {
-        options = "no valid value"
+        options = "no valid value";
     }
-
-    console.log("test");
+    console.log(`PLAYER CHOICE THIS ROUND : ${options}`);
 
 
     return options;
 };
 
 
-
-/*
-1)écrit une fonction playRound pour jouer un round
-2)la fonction playRound a deux paramètres : humanChoice, ComputerChoice
-3)humanChoice doit pouvoir prendre du miniscule comme du majascule
-4) la fonction playRound doit retourner un string du style `You lose/win ${computerChoice} beats/lose to ${humanChoice} `
-5) incrementer la variable de score du vainqueur du round
-*/
-
-
 function playRound(humanChoice, computerChoice) {
 
-    if (humanChoice.includes("Rock")) {
+    if (humanChoice !== null && humanChoice.includes("Rock")) {
         if (computerChoice.includes("Rock")) {
             console.log(`Equal! ${humanChoice} has no efficacity on ${computerChoice}`);
         } else if (computerChoice.includes("Paper")) {
@@ -78,7 +55,7 @@ function playRound(humanChoice, computerChoice) {
             console.log(`Human Score = ${humanScore += 1}`);
             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
         }
-    } else if (humanChoice.includes("Paper")) {
+    } else if (humanChoice !== null && humanChoice.includes("Paper")) {
         if (computerChoice.includes("Rock")) {
             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
             console.log(`Human Score = ${humanScore += 1}`);
@@ -88,7 +65,7 @@ function playRound(humanChoice, computerChoice) {
             console.log(`You lose! ${humanChoice} is beaten by ${computerChoice}`);
             console.log(`Computer Score = ${computerScore += 1}`);
         }
-    } else if (humanChoice.includes("Scissors")) {
+    } else if (humanChoice !== null && humanChoice.includes("Scissors")) {
         if (computerChoice.includes("Rock")) {
             console.log(`You lose! ${humanChoice} is beaten by ${computerChoice}`);
             console.log(`Computer Score = ${computerScore += 1}`);
@@ -98,30 +75,61 @@ function playRound(humanChoice, computerChoice) {
         } else {
             console.log(`Equal! ${humanChoice} has no efficacity on ${computerChoice}`);
         }
+    } else if (humanChoice === null) {
+        console.log(`You need to select an option to play!`);
     } else {
-        console.log(`The Human Player choice is not valid! please type a valid option`);
+        console.log(`The Player choice is not valid! please type a valid option`);
     }
 
 
 
 };
+// const humanSelection = getHumanChoice();
+// const computerSelection = getComputerChoice();
 
-/*
-pierre - pierre = égalité
-pierre - papier = défaite de pierre
-pierre - ciseaux = victoire de pierre
+// playRound(humanSelection, computerSelection)
 
-papier - pierre = victoire de papier
-papier - papier = égalité
-papier - ciseaux = défaite de papier
+function playGame() {
 
-ciseaux - pierre = défaite de ciseaux
-ciseaux - papier = défaite de papier
-ciseaux - ciseaux = égalité
+for (let i = 1; i <= 5; i++) {
+    if (i === 1) {
+        console.log("ROUND 1 START!");
+        playRound(getHumanChoice(), getComputerChoice());
+    }
 
-*/
+    if (i === 2) {
+        console.log("ROUND 2 START!");
+        playRound(getHumanChoice(), getComputerChoice());
+    }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
+    if (i === 3) {
+        console.log("ROUND 3 START!");
+        playRound(getHumanChoice(), getComputerChoice());
+    }
 
-playRound(humanSelection, computerSelection);
+    if (i === 4) {
+        console.log("ROUND 4 START!");
+        playRound(getHumanChoice(), getComputerChoice());
+    }
+
+    if (i === 5) {
+        console.log("ROUND 5 START!");
+        playRound(getHumanChoice(), getComputerChoice());
+    }
+}
+
+console.log(`PLAYER'S POINTS : ${humanScore} VS COMPUTER'S POINTS : ${computerScore}`)
+
+if (humanScore > computerScore) {
+    console.log("Congratulations ! You won.");
+} else if(humanScore === computerScore) {
+    console.log("Even ! No Winner yet!");
+} else {
+    console.log("Too bad ! You lose.");
+}
+
+
+};
+
+
+playGame();
