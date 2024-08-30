@@ -18,6 +18,7 @@ let computerScore = 0;
 
 
 function getComputerChoice() {
+    //To get a random number between 0 and 99 so I can divide that by 3 segments
     let numberReturned = Math.floor(Math.random() * 100);
     let choice = "";
     computerChoiceDisplay.textContent = "";
@@ -39,31 +40,10 @@ function getComputerChoice() {
     return computerChoiceDisplay.textContent;
 };
 
-// function getHumanChoice(options) {
-//     let inventory = ["Rock", "Paper", "Scissors"];
-
-
-//     if (options !== null && options.toLowerCase().includes(inventory[0].toLowerCase())) {
-//         options = inventory[0];
-//     } else if (options !== null && options.toLowerCase().includes(inventory[1].toLowerCase())) {
-//         options = inventory[1];
-//     } else if (options !== null && options.toLowerCase().includes(inventory[2].toLowerCase())) {
-//         options = inventory[2];
-//     } else if (options === null){
-//         options = "no value chosen";
-//     } else {
-//         options = "no valid value";
-//     }
-//     console.log(`PLAYER CHOICE THIS ROUND : ${options}`);
-
-
-//     console.log("🚀 ~ getHumanChoice ~ choices:", options);
-
-//     return options;
-// };
 
 function playRound(humanChoice, computerChoice) {
 
+    
     if (humanChoice !== null && humanChoice.includes("Rock")) {
         if (computerChoice.includes("Rock")) {
             moves.textContent = `Equal! ${humanChoice} has no efficacity on ${computerChoice}`;
