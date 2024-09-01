@@ -24,20 +24,20 @@ function getComputerChoice() {
     computerChoiceDisplay.textContent = "";
     if (numberReturned <= 33) {
         choice = "Rock";
-        computerChoiceDisplay.textContent = "Rock";
+        computerChoiceDisplay.textContent = "👊";
     } else if (numberReturned > 33 && numberReturned <= 66) {
         choice = "Paper";
-        computerChoiceDisplay.textContent = "Paper";
+        computerChoiceDisplay.textContent = "✋";
 
     } else if (numberReturned > 66 && numberReturned <= 99) {
         choice = "Scissors";
-        computerChoiceDisplay.textContent = "Scissors";
+        computerChoiceDisplay.textContent = "✌️";
 
     } else {
         choice  = null;
     }
 
-    return computerChoiceDisplay.textContent;
+    return choice;
 };
 
 
@@ -113,19 +113,19 @@ if (humanScore === 5 && computerScore < 5) {
 
 paperButton.addEventListener('click', () => {
     playRound("Paper", getComputerChoice());
-    humanChoiceDisplay.textContent = "Paper";
+    humanChoiceDisplay.textContent = "🤚";
     playGame();
 });
 
 rockButton.addEventListener('click', () => {
     playRound("Rock", getComputerChoice());
-    humanChoiceDisplay.textContent = "Rock";
+    humanChoiceDisplay.textContent = "👊";
     playGame();
 });
 
 scissorsButton.addEventListener('click', () => {
     playRound("Scissors", getComputerChoice());
-    humanChoiceDisplay.textContent = "Scissors";
+    humanChoiceDisplay.textContent = "✌️";
     playGame();
     
 });
